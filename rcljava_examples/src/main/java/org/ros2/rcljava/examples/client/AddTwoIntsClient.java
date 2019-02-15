@@ -24,10 +24,10 @@ import java.util.concurrent.Future;
 public class AddTwoIntsClient {
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit();
 
     // Let's create a new Node
-    Node node = RCLJava.createNode("minimal_client");
+    Node node = RCLJava.createNode("minimal_client", context);
 
     Client<example_interfaces.srv.AddTwoInts> client =
         node.<example_interfaces.srv.AddTwoInts>createClient(
@@ -44,6 +44,6 @@ public class AddTwoIntsClient {
     System.out.println(
         "result of " + request.getA() + " + " + request.getB() + " = " + future.get().getSum());
 
-    RCLJava.shutdown();
+    RCLJava.shutdown(context);
   }
 }

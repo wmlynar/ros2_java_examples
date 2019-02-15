@@ -26,16 +26,16 @@ import org.ros2.rcljava.timer.WallTimer;
 public class TimerLambda extends BaseComposableNode {
   private WallTimer timer;
 
-  public TimerLambda() {
-    super("minimal_timer");
+  public TimerLambda(long context) {
+    super("minimal_timer", context);
     Callback timerCallback = () -> System.out.println("Hello, world!");
-    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, timerCallback);
+    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, timerCallback, context);
   }
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit();
 
-    RCLJava.spin(new TimerLambda());
+    RCLJava.spin(new TimerLambda(context));
   }
 }

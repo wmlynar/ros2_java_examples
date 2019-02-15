@@ -23,8 +23,8 @@ import org.ros2.rcljava.subscription.Subscription;
 public class SubscriberMemberFunction extends BaseComposableNode {
   private Subscription<std_msgs.msg.String> subscription;
 
-  public SubscriberMemberFunction() {
-    super("minimal_subscriber");
+  public SubscriberMemberFunction(long context) {
+    super("minimal_subscriber", context);
     subscription = node.<std_msgs.msg.String>createSubscription(
         std_msgs.msg.String.class, "topic", this ::topicCallback);
   }
@@ -35,8 +35,8 @@ public class SubscriberMemberFunction extends BaseComposableNode {
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit();
 
-    RCLJava.spin(new SubscriberMemberFunction());
+    RCLJava.spin(new SubscriberMemberFunction(context));
   }
 }

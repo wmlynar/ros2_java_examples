@@ -30,8 +30,8 @@ public class PublisherLambda extends BaseComposableNode {
 
   private WallTimer timer;
 
-  public PublisherLambda() {
-    super("minmal_publisher");
+  public PublisherLambda(long context) {
+    super("minmal_publisher", context);
     this.count = 0;
     // Publishers are type safe, make sure to pass the message type
     this.publisher = node.<std_msgs.msg.String>createPublisher(std_msgs.msg.String.class, "topic");
@@ -42,13 +42,13 @@ public class PublisherLambda extends BaseComposableNode {
       System.out.println("Publishing: [" + message.getData() + "]");
       this.publisher.publish(message);
     };
-    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, timerCallback);
+    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, timerCallback, context);
   }
 
   public static void main(String[] args) throws InterruptedException {
     // Initialize RCL
-    RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit();
 
-    RCLJava.spin(new PublisherLambda());
+    RCLJava.spin(new PublisherLambda(context));
   }
 }

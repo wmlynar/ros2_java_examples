@@ -22,10 +22,10 @@ import org.ros2.rcljava.executors.MultiThreadedExecutor;
 public class Composed {
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    RCLJava.rclJavaInit();
+	long context = RCLJava.rclJavaInit();
     SingleThreadedExecutor exec = new SingleThreadedExecutor();
-    SubscriberNode subscriberNode = new SubscriberNode();
-    PublisherNode publisherNode = new PublisherNode();
+    SubscriberNode subscriberNode = new SubscriberNode(context);
+    PublisherNode publisherNode = new PublisherNode(context);
     exec.addNode(subscriberNode);
     exec.addNode(publisherNode);
     exec.spin();

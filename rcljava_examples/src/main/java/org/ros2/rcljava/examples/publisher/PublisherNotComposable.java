@@ -26,10 +26,10 @@ import org.ros2.rcljava.timer.WallTimer;
 public class PublisherNotComposable {
   public static void main(String[] args) throws InterruptedException {
     // Initialize RCL
-    RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit();
 
     // Let's create a Node
-    Node node = RCLJava.createNode("minimal_publisher");
+    Node node = RCLJava.createNode("minimal_publisher", context);
 
     // Publishers are type safe, make sure to pass the message type
     Publisher<std_msgs.msg.String> publisher =

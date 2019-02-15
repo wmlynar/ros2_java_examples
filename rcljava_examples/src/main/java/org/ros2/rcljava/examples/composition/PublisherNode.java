@@ -29,11 +29,11 @@ public class PublisherNode extends BaseComposableNode {
 
   private int count;
 
-  public PublisherNode() {
-    super("publisher_node");
+  public PublisherNode(long context) {
+    super("publisher_node", context);
     this.count = 0;
     this.publisher = node.<std_msgs.msg.String>createPublisher(std_msgs.msg.String.class, "topic");
-    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, this::onTimer);
+    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, this::onTimer, context);
   }
 
   private void onTimer() {

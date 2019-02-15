@@ -23,16 +23,16 @@ import org.ros2.rcljava.subscription.Subscription;
 public class SubscriberLambda extends BaseComposableNode {
   private Subscription<std_msgs.msg.String> subscription;
 
-  public SubscriberLambda() {
-    super("minimal_subscriber");
+  public SubscriberLambda(long context) {
+    super("minimal_subscriber", context);
     subscription = node.<std_msgs.msg.String>createSubscription(std_msgs.msg.String.class, "topic",
         msg -> System.out.println("I heard: [" + msg.getData() + "]"));
   }
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit();
 
-    RCLJava.spin(new SubscriberLambda());
+    RCLJava.spin(new SubscriberLambda(context));
   }
 }
