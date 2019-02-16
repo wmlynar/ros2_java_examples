@@ -31,7 +31,7 @@ public class AddTwoIntsService {
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
     Node node = RCLJava.createNode("minimal_service", context);

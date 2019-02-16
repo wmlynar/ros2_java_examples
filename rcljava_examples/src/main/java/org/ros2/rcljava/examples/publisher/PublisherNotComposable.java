@@ -26,7 +26,7 @@ import org.ros2.rcljava.timer.WallTimer;
 public class PublisherNotComposable {
   public static void main(String[] args) throws InterruptedException {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit(args);
 
     // Let's create a Node
     Node node = RCLJava.createNode("minimal_publisher", context);

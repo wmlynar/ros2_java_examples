@@ -35,7 +35,7 @@ public class SubscriberMemberFunction extends BaseComposableNode {
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit(args);
 
     RCLJava.spin(new SubscriberMemberFunction(context));
   }

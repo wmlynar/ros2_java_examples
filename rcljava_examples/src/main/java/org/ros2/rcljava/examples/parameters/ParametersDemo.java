@@ -33,7 +33,7 @@ public class ParametersDemo {
 
   public static void main(String[] args) {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
     Node node = RCLJava.createNode(NODE_NAME, context);

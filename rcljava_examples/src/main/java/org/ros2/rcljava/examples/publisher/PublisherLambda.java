@@ -47,7 +47,7 @@ public class PublisherLambda extends BaseComposableNode {
 
   public static void main(String[] args) throws InterruptedException {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit();
+    long context = RCLJava.rclJavaInit(args);
 
     RCLJava.spin(new PublisherLambda(context));
   }
