@@ -21,6 +21,7 @@ import org.ros2.rcljava.RCLJava;
 import org.ros2.rcljava.consumers.Consumer;
 import org.ros2.rcljava.node.BaseComposableNode;
 import org.ros2.rcljava.subscription.Subscription;
+import org.ros2.rcljava.time.ClockType;
 import org.ros2.rcljava.timer.WallTimer;
 
 public class TimerMemberFunction extends BaseComposableNode {
@@ -28,7 +29,7 @@ public class TimerMemberFunction extends BaseComposableNode {
 
   public TimerMemberFunction(long context) {
     super("minimal_timer", context);
-    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, this ::timerCallback, context);
+    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, this ::timerCallback, context);
   }
 
   private void timerCallback() {

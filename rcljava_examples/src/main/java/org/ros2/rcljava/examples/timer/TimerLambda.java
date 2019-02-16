@@ -21,6 +21,7 @@ import org.ros2.rcljava.RCLJava;
 import org.ros2.rcljava.concurrent.Callback;
 import org.ros2.rcljava.node.BaseComposableNode;
 import org.ros2.rcljava.subscription.Subscription;
+import org.ros2.rcljava.time.ClockType;
 import org.ros2.rcljava.timer.WallTimer;
 
 public class TimerLambda extends BaseComposableNode {
@@ -29,7 +30,7 @@ public class TimerLambda extends BaseComposableNode {
   public TimerLambda(long context) {
     super("minimal_timer", context);
     Callback timerCallback = () -> System.out.println("Hello, world!");
-    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, timerCallback, context);
+    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, timerCallback, context);
   }
 
   public static void main(final String[] args) throws InterruptedException, Exception {

@@ -21,6 +21,7 @@ import org.ros2.rcljava.RCLJava;
 import org.ros2.rcljava.concurrent.Callback;
 import org.ros2.rcljava.node.BaseComposableNode;
 import org.ros2.rcljava.publisher.Publisher;
+import org.ros2.rcljava.time.ClockType;
 import org.ros2.rcljava.timer.WallTimer;
 
 public class PublisherMemberFunction extends BaseComposableNode {
@@ -35,7 +36,7 @@ public class PublisherMemberFunction extends BaseComposableNode {
     this.count = 0;
     // Publishers are type safe, make sure to pass the message type
     this.publisher = node.<std_msgs.msg.String>createPublisher(std_msgs.msg.String.class, "topic");
-    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, this ::timerCallback, context);
+    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, this ::timerCallback, context);
   }
 
   private void timerCallback() {

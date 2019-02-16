@@ -21,6 +21,7 @@ import org.ros2.rcljava.RCLJava;
 import org.ros2.rcljava.concurrent.Callback;
 import org.ros2.rcljava.node.BaseComposableNode;
 import org.ros2.rcljava.publisher.Publisher;
+import org.ros2.rcljava.time.ClockType;
 import org.ros2.rcljava.timer.WallTimer;
 
 public class PublisherLambda extends BaseComposableNode {
@@ -42,7 +43,7 @@ public class PublisherLambda extends BaseComposableNode {
       System.out.println("Publishing: [" + message.getData() + "]");
       this.publisher.publish(message);
     };
-    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, timerCallback, context);
+    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, timerCallback, context);
   }
 
   public static void main(String[] args) throws InterruptedException {
