@@ -21,7 +21,7 @@ import org.ros2.rcljava.parameters.ParameterEventCallback;
 import org.ros2.rcljava.subscription.Subscription;
 
 public class ParameterEventsDemo {
-  private static final String NODE_NAME = SetAndGetParameters.class.getSimpleName().toLowerCase();
+  private static final String NODE_NAME = ParameterEventsDemo.class.getSimpleName().toLowerCase();
 
   private static void onParameterEvent(final rcl_interfaces.msg.ParameterEvent event) {
     System.out.println("Parameter event:");
