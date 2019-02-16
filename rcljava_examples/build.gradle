@@ -40,7 +40,10 @@ ament {
             'subscriber_lambda = org.ros2.rcljava.examples.subscriber.SubscriberLambda',
             'subscriber_member_function = org.ros2.rcljava.examples.subscriber.SubscriberMemberFunction',
             'timer_lambda = org.ros2.rcljava.examples.timer.TimerLambda',
-            'timer_member_function = org.ros2.rcljava.examples.timer.TimerMemberFunction'
+            'timer_member_function = org.ros2.rcljava.examples.timer.TimerMemberFunction',
+            'parameter_events_demo = org.ros2.rcljava.examples.parameters.ParameterEventsDemo',
+            'parameters_local_demo = org.ros2.rcljava.examples.parameters.ParametersLocalDemo',
+            'parameters_server_demo = org.ros2.rcljava.examples.parameters.ParametersServerDemo',
         ]
     }
 }
