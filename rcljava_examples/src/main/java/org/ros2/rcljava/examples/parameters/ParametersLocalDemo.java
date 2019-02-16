@@ -14,7 +14,6 @@
 package org.ros2.rcljava.examples.parameters;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.ros2.rcljava.RCLJava;
@@ -31,10 +30,10 @@ public class ParametersLocalDemo {
 
   public static void main(String[] args) {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit(args);
+    long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode(NODE_NAME, context);
+    Node node = RCLJava.createNode(NODE_NAME, contextHandle);
 
     // set parameters
     List<SetParametersResult> setParametersResults = node.setParameters(
@@ -48,7 +47,6 @@ public class ParametersLocalDemo {
 
     // get parameters
     List<ParameterVariant> parameters = node.getParameters(Arrays.asList("foo", "baz"));
-
     for (ParameterVariant parameter : parameters) {
       System.out.println(parameter.getName() + " " + parameter.getTypeName() + " " + parameter.getValueAsString() + " "
           + parameter.getType().toString());
@@ -56,7 +54,6 @@ public class ParametersLocalDemo {
 
     // get parameter types
     List<ParameterType> parameterTypes = node.getParameterTypes(Arrays.asList("foo", "baz"));
-
     for (ParameterType type : parameterTypes) {
       System.out.println("Parameter type: " + type.toString());
     }
@@ -77,6 +74,6 @@ public class ParametersLocalDemo {
     }
 
     node.dispose();
-    RCLJava.shutdown(context);
+    RCLJava.shutdown(contextHandle);
   }
 }

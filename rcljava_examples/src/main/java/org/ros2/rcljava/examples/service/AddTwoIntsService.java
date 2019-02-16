@@ -31,10 +31,10 @@ public class AddTwoIntsService {
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit(args);
+    long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode("minimal_service", context);
+    Node node = RCLJava.createNode("minimal_service", contextHandle);
 
     Service<example_interfaces.srv.AddTwoInts> service =
         node.<example_interfaces.srv.AddTwoInts>createService(

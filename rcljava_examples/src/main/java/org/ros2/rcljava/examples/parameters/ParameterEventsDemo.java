@@ -16,7 +16,6 @@ package org.ros2.rcljava.examples.parameters;
 
 import org.ros2.rcljava.RCLJava;
 import org.ros2.rcljava.node.Node;
-import org.ros2.rcljava.parameters.ParameterEventCallback;
 import org.ros2.rcljava.subscription.Subscription;
 
 public class ParameterEventsDemo {
@@ -41,18 +40,15 @@ public class ParameterEventsDemo {
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit(args);
+    long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode(NODE_NAME, context);
+    Node node = RCLJava.createNode(NODE_NAME, contextHandle);
 
-    Subscription<rcl_interfaces.msg.ParameterEvent> sub = node.onParameterEvent(new ParameterEventCallback() {
-        @Override
-        public void onEvent(rcl_interfaces.msg.ParameterEvent event) {
-            ParameterEventsDemo.onParameterEvent(event);
-        }
-    });    
-    
+    Subscription<rcl_interfaces.msg.ParameterEvent> sub = node
+        .onParameterEvent(event -> ParameterEventsDemo.onParameterEvent(event));
+
     RCLJava.spin(node);
   }
+
 }

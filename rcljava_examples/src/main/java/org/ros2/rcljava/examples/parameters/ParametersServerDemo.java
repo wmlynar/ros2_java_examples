@@ -14,20 +14,16 @@
 package org.ros2.rcljava.examples.parameters;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.ros2.rcljava.RCLJava;
 import org.ros2.rcljava.node.Node;
 import org.ros2.rcljava.parameters.ParameterCallback;
-import org.ros2.rcljava.parameters.ParameterType;
 import org.ros2.rcljava.parameters.ParameterVariant;
 import org.ros2.rcljava.parameters.client.SyncParametersClientImpl;
 import org.ros2.rcljava.parameters.service.ParameterServiceImpl;
 
-import rcl_interfaces.msg.ListParametersResult;
-import rcl_interfaces.msg.ParameterDescriptor;
 import rcl_interfaces.msg.SetParametersResult;
 
 public class ParametersServerDemo {
@@ -36,11 +32,12 @@ public class ParametersServerDemo {
   public static void main(String[] args)
       throws NoSuchFieldException, IllegalAccessException, InterruptedException, ExecutionException {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit(args);
+    long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode(NODE_NAME, context);
+    Node node = RCLJava.createNode(NODE_NAME, contextHandle);
 
+    // create parameter service and client
     ParameterServiceImpl parametersService = new ParameterServiceImpl(node);
     SyncParametersClientImpl parametersClient = new SyncParametersClientImpl(node);
 
@@ -62,7 +59,6 @@ public class ParametersServerDemo {
     List<SetParametersResult> setParametersResults = parametersClient.setParameters(
         Arrays.<ParameterVariant>asList(new ParameterVariant("foo", 2L), new ParameterVariant("bar", "hello"),
             new ParameterVariant("baz", 1.45), new ParameterVariant("foobar", true)));
-
     for (SetParametersResult result : setParametersResults) {
       if (!result.getSuccessful()) {
         System.out.println("Failed to set parameter: " + result.getReason());
@@ -79,6 +75,6 @@ public class ParametersServerDemo {
     RCLJava.spin(node);
 
     node.dispose();
-    RCLJava.shutdown(context);
+    RCLJava.shutdown(contextHandle);
   }
 }

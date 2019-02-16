@@ -27,9 +27,9 @@ import org.ros2.rcljava.timer.WallTimer;
 public class TimerMemberFunction extends BaseComposableNode {
   private WallTimer timer;
 
-  public TimerMemberFunction(long context) {
-    super("minimal_timer", context);
-    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, this ::timerCallback, context);
+  public TimerMemberFunction(long contextHandle) {
+    super("minimal_timer", contextHandle);
+    timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, this ::timerCallback, contextHandle);
   }
 
   private void timerCallback() {
@@ -38,8 +38,8 @@ public class TimerMemberFunction extends BaseComposableNode {
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit(args);
+    long contextHandle = RCLJava.rclJavaInit(args);
 
-    RCLJava.spin(new TimerLambda(context));
+    RCLJava.spin(new TimerLambda(contextHandle));
   }
 }

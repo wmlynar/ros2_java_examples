@@ -31,12 +31,12 @@ public class PublisherMemberFunction extends BaseComposableNode {
 
   private WallTimer timer;
 
-  public PublisherMemberFunction(long context) {
-    super("minmal_publisher", context);
+  public PublisherMemberFunction(long contextHandle) {
+    super("minmal_publisher", contextHandle);
     this.count = 0;
     // Publishers are type safe, make sure to pass the message type
     this.publisher = node.<std_msgs.msg.String>createPublisher(std_msgs.msg.String.class, "topic");
-    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, this ::timerCallback, context);
+    this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, this ::timerCallback, contextHandle);
   }
 
   private void timerCallback() {
@@ -49,8 +49,8 @@ public class PublisherMemberFunction extends BaseComposableNode {
 
   public static void main(String[] args) throws InterruptedException {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit(args);
+    long contextHandle = RCLJava.rclJavaInit(args);
 
-    RCLJava.spin(new PublisherLambda(context));
+    RCLJava.spin(new PublisherLambda(contextHandle));
   }
 }

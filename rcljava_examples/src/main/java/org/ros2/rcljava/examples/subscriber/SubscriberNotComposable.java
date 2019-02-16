@@ -27,10 +27,10 @@ public class SubscriberNotComposable {
 
   public static void main(final String[] args) throws InterruptedException, Exception {
     // Initialize RCL
-    long context = RCLJava.rclJavaInit(args);
+    long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode("minimal_subscriber", context);
+    Node node = RCLJava.createNode("minimal_subscriber", contextHandle);
 
     // Subscriptions are type safe, so we'll pass the message type. We use the
     // fully qualified class name to avoid any collision with Java's String
