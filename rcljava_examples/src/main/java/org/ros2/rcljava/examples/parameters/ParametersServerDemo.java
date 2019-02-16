@@ -45,7 +45,7 @@ public class ParametersServerDemo {
     SyncParametersClientImpl parametersClient = new SyncParametersClientImpl(node);
 
     // add callback on parameter change
-    node.setParameterCallback(new ParameterCallback() {
+    node.setParameterChangeCallback(new ParameterCallback() {
       @Override
       public SetParametersResult onParamChange(List<ParameterVariant> parameters) {
         for (ParameterVariant parameter : parameters) {
