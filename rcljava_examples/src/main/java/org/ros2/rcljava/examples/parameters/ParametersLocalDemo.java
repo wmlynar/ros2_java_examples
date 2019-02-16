@@ -1,6 +1,4 @@
-/* Copyright 2016 Esteve Fernandez <esteve@apache.org>
- * Copyright 2016-2017 Mickael Gaillard <mick.gaillard@gmail.com>
- *
+/* 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,8 +26,8 @@ import rcl_interfaces.msg.ListParametersResult;
 import rcl_interfaces.msg.ParameterDescriptor;
 import rcl_interfaces.msg.SetParametersResult;
 
-public class ParametersDemo {
-  private static final String NODE_NAME = ParametersDemo.class.getSimpleName().toLowerCase();
+public class ParametersLocalDemo {
+  private static final String NODE_NAME = ParametersLocalDemo.class.getSimpleName().toLowerCase();
 
   public static void main(String[] args) {
     // Initialize RCL
@@ -39,11 +37,9 @@ public class ParametersDemo {
     Node node = RCLJava.createNode(NODE_NAME, context);
 
     // set parameters
-    
     List<SetParametersResult> setParametersResults = node.setParameters(
         Arrays.<ParameterVariant>asList(new ParameterVariant("foo", 2L), new ParameterVariant("bar", "hello"),
             new ParameterVariant("baz", 1.45), new ParameterVariant("foobar", true)));
-
     for (SetParametersResult result : setParametersResults) {
       if (!result.getSuccessful()) {
         System.out.println("Failed to set parameter: " + result.getReason());
@@ -51,7 +47,6 @@ public class ParametersDemo {
     }
 
     // get parameters
-    
     List<ParameterVariant> parameters = node.getParameters(Arrays.asList("foo", "baz"));
 
     for (ParameterVariant parameter : parameters) {
@@ -60,7 +55,6 @@ public class ParametersDemo {
     }
 
     // get parameter types
-    
     List<ParameterType> parameterTypes = node.getParameterTypes(Arrays.asList("foo", "baz"));
 
     for (ParameterType type : parameterTypes) {
@@ -68,23 +62,18 @@ public class ParametersDemo {
     }
 
     // list parameters
-    
     ListParametersResult listParametersResult = node.listParameters(Arrays.asList("foo", "baz"), 10);
-
     for (String str : listParametersResult.getNames()) {
       System.out.println("Parameter name: " + str);
     }
-
     for (String str : listParametersResult.getPrefixes()) {
       System.out.println("Parameter prefix: " + str);
     }
 
     // describe parameters
-    
     List<ParameterDescriptor> parameterDescriptions = node.describeParameters(Arrays.asList("foo", "baz"));
-
     for (ParameterDescriptor description : parameterDescriptions) {
-      System.out.println("Parameter description, name: " + description.getName() + ", type: " + description.getType());
+      System.out.println("Parameter description, name: " + description.getName() + ", type: " + ParameterType.fromByte(description.getType()));
     }
 
     node.dispose();
