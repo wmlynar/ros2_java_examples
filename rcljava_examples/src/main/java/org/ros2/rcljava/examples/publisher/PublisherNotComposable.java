@@ -39,7 +39,7 @@ public class PublisherNotComposable {
 
     int publishCount = 0;
 
-    while (RCLJava.ok()) {
+    while (RCLJava.ok(contextHandle)) {
       message.setData("Hello, world! " + publishCount);
       publishCount++;
       System.out.println("Publishing: [" + message.getData() + "]");

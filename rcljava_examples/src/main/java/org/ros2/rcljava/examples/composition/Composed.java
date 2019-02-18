@@ -28,6 +28,6 @@ public class Composed {
     PublisherNode publisherNode = new PublisherNode(contextHandle);
     exec.addNode(subscriberNode);
     exec.addNode(publisherNode);
-    exec.spin();
+    exec.spin(contextHandle);
   }
 }

@@ -48,7 +48,7 @@ public class ParameterEventsDemo {
     Subscription<rcl_interfaces.msg.ParameterEvent> sub = node
         .onParameterEvent(event -> ParameterEventsDemo.onParameterEvent(event));
 
-    RCLJava.spin(node);
+    RCLJava.spin(node, contextHandle);
   }
 
 }

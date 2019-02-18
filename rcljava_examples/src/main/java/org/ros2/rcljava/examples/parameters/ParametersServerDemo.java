@@ -39,7 +39,7 @@ public class ParametersServerDemo {
 
     // create parameter service and client
     ParameterServiceImpl parametersService = new ParameterServiceImpl(node);
-    SyncParametersClientImpl parametersClient = new SyncParametersClientImpl(node);
+    SyncParametersClientImpl parametersClient = new SyncParametersClientImpl(node, contextHandle);
 
     // add callback on parameter change
     node.setParameterChangeCallback(new ParameterCallback() {
@@ -72,7 +72,7 @@ public class ParametersServerDemo {
           + parameter.getType().toString());
     }
 
-    RCLJava.spin(node);
+    RCLJava.spin(node, contextHandle);
 
     node.dispose();
     RCLJava.shutdown(contextHandle);

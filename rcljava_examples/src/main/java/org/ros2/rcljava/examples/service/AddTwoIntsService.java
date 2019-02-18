@@ -43,6 +43,6 @@ public class AddTwoIntsService {
                 example_interfaces.srv.AddTwoInts_Response response)
                 -> AddTwoIntsService.handleService(header, request, response));
 
-    RCLJava.spin(node);
+    RCLJava.spin(node, contextHandle);
   }
 }

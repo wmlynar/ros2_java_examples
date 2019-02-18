@@ -50,6 +50,6 @@ public class PublisherLambda extends BaseComposableNode {
     // Initialize RCL
     long contextHandle = RCLJava.rclJavaInit(args);
 
-    RCLJava.spin(new PublisherLambda(contextHandle));
+    RCLJava.spin(new PublisherLambda(contextHandle), contextHandle);
   }
 }

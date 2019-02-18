@@ -38,6 +38,6 @@ public class SubscriberNotComposable {
     Subscription<std_msgs.msg.String> sub = node.<std_msgs.msg.String>createSubscription(
         std_msgs.msg.String.class, "topic", SubscriberNotComposable::topicCallback);
 
-    RCLJava.spin(node);
+    RCLJava.spin(node, contextHandle);
   }
 }

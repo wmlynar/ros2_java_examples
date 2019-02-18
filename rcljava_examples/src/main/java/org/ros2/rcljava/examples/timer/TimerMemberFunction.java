@@ -40,6 +40,6 @@ public class TimerMemberFunction extends BaseComposableNode {
     // Initialize RCL
     long contextHandle = RCLJava.rclJavaInit(args);
 
-    RCLJava.spin(new TimerLambda(contextHandle));
+    RCLJava.spin(new TimerLambda(contextHandle), contextHandle);
   }
 }

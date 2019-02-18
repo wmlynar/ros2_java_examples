@@ -33,6 +33,6 @@ public class SubscriberLambda extends BaseComposableNode {
     // Initialize RCL
     long contextHandle = RCLJava.rclJavaInit(args);
 
-    RCLJava.spin(new SubscriberLambda(contextHandle));
+    RCLJava.spin(new SubscriberLambda(contextHandle), contextHandle);
   }
 }
