@@ -27,7 +27,7 @@ public class AddTwoIntsClient {
     long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode("minimal_client", contextHandle);
+    Node node = RCLJava.createNode("minimal_client", args, true, contextHandle);
 
     Client<example_interfaces.srv.AddTwoInts> client =
         node.<example_interfaces.srv.AddTwoInts>createClient(

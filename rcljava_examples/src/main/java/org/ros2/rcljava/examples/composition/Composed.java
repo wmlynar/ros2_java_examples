@@ -24,8 +24,8 @@ public class Composed {
     // Initialize RCL
 	long contextHandle = RCLJava.rclJavaInit(args);
     SingleThreadedExecutor exec = new SingleThreadedExecutor();
-    SubscriberNode subscriberNode = new SubscriberNode(contextHandle);
-    PublisherNode publisherNode = new PublisherNode(contextHandle);
+    SubscriberNode subscriberNode = new SubscriberNode(args, contextHandle);
+    PublisherNode publisherNode = new PublisherNode(args, contextHandle);
     exec.addNode(subscriberNode);
     exec.addNode(publisherNode);
     exec.spin(contextHandle);

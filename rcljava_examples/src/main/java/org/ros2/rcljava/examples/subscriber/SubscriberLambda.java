@@ -23,8 +23,8 @@ import org.ros2.rcljava.subscription.Subscription;
 public class SubscriberLambda extends BaseComposableNode {
   private Subscription<std_msgs.msg.String> subscription;
 
-  public SubscriberLambda(long contextHandle) {
-    super("minimal_subscriber", contextHandle);
+  public SubscriberLambda(String[] args, long contextHandle) {
+    super("minimal_subscriber", args, true, contextHandle);
     subscription = node.<std_msgs.msg.String>createSubscription(std_msgs.msg.String.class, "topic",
         msg -> System.out.println("I heard: [" + msg.getData() + "]"));
   }
@@ -33,6 +33,6 @@ public class SubscriberLambda extends BaseComposableNode {
     // Initialize RCL
     long contextHandle = RCLJava.rclJavaInit(args);
 
-    RCLJava.spin(new SubscriberLambda(contextHandle), contextHandle);
+    RCLJava.spin(new SubscriberLambda(args, contextHandle), contextHandle);
   }
 }

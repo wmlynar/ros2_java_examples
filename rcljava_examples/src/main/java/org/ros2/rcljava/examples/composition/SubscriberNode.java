@@ -23,8 +23,8 @@ import org.ros2.rcljava.subscription.Subscription;
 public class SubscriberNode extends BaseComposableNode {
   private Subscription<std_msgs.msg.String> subscription;
 
-  public SubscriberNode(long contextHandle) {
-    super("subscriber_node", contextHandle);
+  public SubscriberNode(String[] args, long contextHandle) {
+    super("subscriber_node", args, true, contextHandle);
     subscription = node.<std_msgs.msg.String>createSubscription(std_msgs.msg.String.class, "topic",
         msg -> System.out.println("Subscriber [" + msg.getData() + "]"));
   }

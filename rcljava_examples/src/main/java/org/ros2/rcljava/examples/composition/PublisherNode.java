@@ -30,8 +30,8 @@ public class PublisherNode extends BaseComposableNode {
 
   private int count;
 
-  public PublisherNode(long contextHandle) {
-    super("publisher_node", contextHandle);
+  public PublisherNode(String[] args, long contextHandle) {
+    super("publisher_node", args, true, contextHandle);
     this.count = 0;
     this.publisher = node.<std_msgs.msg.String>createPublisher(std_msgs.msg.String.class, "topic");
     this.timer = node.createWallTimer(500, TimeUnit.MILLISECONDS, ClockType.ROS_TIME, this::onTimer, contextHandle);

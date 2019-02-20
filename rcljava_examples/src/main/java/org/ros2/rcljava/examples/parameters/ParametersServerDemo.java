@@ -35,7 +35,7 @@ public class ParametersServerDemo {
     long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode(NODE_NAME, contextHandle);
+    Node node = RCLJava.createNode(NODE_NAME, args, true, contextHandle);
 
     // create parameter service and client
     ParameterServiceImpl parametersService = new ParameterServiceImpl(node);

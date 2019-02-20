@@ -33,7 +33,7 @@ public class ParametersLocalDemo {
     long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode(NODE_NAME, contextHandle);
+    Node node = RCLJava.createNode(NODE_NAME, args, true, contextHandle);
 
     // set parameters
     List<SetParametersResult> setParametersResults = node.setParameters(

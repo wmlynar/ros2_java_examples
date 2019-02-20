@@ -43,7 +43,7 @@ public class ParameterEventsDemo {
     long contextHandle = RCLJava.rclJavaInit(args);
 
     // Let's create a new Node
-    Node node = RCLJava.createNode(NODE_NAME, contextHandle);
+    Node node = RCLJava.createNode(NODE_NAME, args, true, contextHandle);
 
     Subscription<rcl_interfaces.msg.ParameterEvent> sub = node
         .onParameterEvent(event -> ParameterEventsDemo.onParameterEvent(event));

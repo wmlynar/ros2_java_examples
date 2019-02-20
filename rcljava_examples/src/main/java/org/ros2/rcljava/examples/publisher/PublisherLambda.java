@@ -31,8 +31,8 @@ public class PublisherLambda extends BaseComposableNode {
 
   private WallTimer timer;
 
-  public PublisherLambda(long contextHandle) {
-    super("minmal_publisher", contextHandle);
+  public PublisherLambda(String[] args, long contextHandle) {
+    super("minmal_publisher", args, true, contextHandle);
     this.count = 0;
     // Publishers are type safe, make sure to pass the message type
     this.publisher = node.<std_msgs.msg.String>createPublisher(std_msgs.msg.String.class, "topic");
@@ -50,6 +50,6 @@ public class PublisherLambda extends BaseComposableNode {
     // Initialize RCL
     long contextHandle = RCLJava.rclJavaInit(args);
 
-    RCLJava.spin(new PublisherLambda(contextHandle), contextHandle);
+    RCLJava.spin(new PublisherLambda(args, contextHandle), contextHandle);
   }
 }
